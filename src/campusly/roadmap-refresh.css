@@ -439,29 +439,22 @@ body:has(.roadmap-page:not(.module-session-page)){
   .roadmap-module-ai-icon,.roadmap-module-ai-icon::before,.roadmap-module-ai-icon svg{animation:none}
 }
 
-/* ---------- Realistic AI pictures floating behind the road (keeps the board's sky colours) ---------- */
+/* ---------- Realistic AI pictures resting behind the road (keeps the board's sky colours) ---------- */
 .roadmap-ai-icons{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .roadmap-ai-icon{
-  position:absolute;top:var(--ai-y);width:var(--ai-size);aspect-ratio:1/1;
-  display:grid;place-items:center;opacity:.9;
-  animation:rm-ai-float 7s ease-in-out var(--ai-delay) infinite;
+  position:absolute;top:var(--ai-y);width:min(var(--ai-size),16%);aspect-ratio:1/1;
+  display:grid;place-items:center;opacity:.9;overflow:hidden;
 }
-.roadmap-ai-icon.is-left{left:2.5%}
-.roadmap-ai-icon.is-right{right:2.5%}
+.roadmap-ai-icon.is-left{left:2%}
+.roadmap-ai-icon.is-right{right:2%}
 .roadmap-ai-icon img{
-  width:100%;height:100%;object-fit:contain;user-select:none;
-  filter:drop-shadow(0 10px 18px oklch(0.45 0.2 280 / 0.35)) drop-shadow(0 0 14px oklch(0.8 0.15 220 / 0.55));
-  animation:rm-ai-glow 4.5s ease-in-out var(--ai-delay) infinite;
+  display:block;width:100%;height:100%;object-fit:contain;user-select:none;
+  filter:drop-shadow(0 6px 12px oklch(0.45 0.2 280 / 0.3)) drop-shadow(0 0 10px oklch(0.8 0.15 220 / 0.45));
 }
 /* The robot is a head-and-shoulders picture: soften its cut-off shoulders */
 .roadmap-ai-icon.is-robot img{-webkit-mask-image:radial-gradient(ellipse 52% 54% at 50% 44%,#000 74%,transparent 100%);mask-image:radial-gradient(ellipse 52% 54% at 50% 44%,#000 74%,transparent 100%)}
-@keyframes rm-ai-float{0%,100%{transform:translateY(0) rotate(var(--ai-tilt))}50%{transform:translateY(-14px) rotate(calc(var(--ai-tilt) * -1))}}
-@keyframes rm-ai-glow{0%,100%{opacity:.8}50%{opacity:1}}
 @media(max-width:720px){
-  .roadmap-ai-icon{width:calc(var(--ai-size) * .6);opacity:.85}
-  .roadmap-ai-icon.is-left{left:1%}
-  .roadmap-ai-icon.is-right{right:1%}
-}
-@media(prefers-reduced-motion:reduce){
-  .roadmap-ai-icon,.roadmap-ai-icon img{animation:none!important}
+  .roadmap-ai-icon{width:min(calc(var(--ai-size) * .5),18%);opacity:.8}
+  .roadmap-ai-icon.is-left{left:1.5%}
+  .roadmap-ai-icon.is-right{right:1.5%}
 }

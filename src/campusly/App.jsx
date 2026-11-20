@@ -814,7 +814,22 @@ function Courses({ data, setPage }) {
     ? getMissingClassTestsForModule(currentCourse, classTests)
     : []
   useEffect(() => {
-    window.scrollTo(0, 0)
+    if (openModule !== null) {
+      window.scrollTo(0, 0)
+      return
+    }
+    // The course page opens on its cover at the bottom, where the road starts (Module 01),
+    // after the bottom bar's own jump to the top has run.
+    let inner = 0
+    const outer = window.requestAnimationFrame(() => {
+      inner = window.requestAnimationFrame(() => {
+        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })
+      })
+    })
+    return () => {
+      window.cancelAnimationFrame(outer)
+      window.cancelAnimationFrame(inner)
+    }
   }, [openModule])
 
   useEffect(() => {

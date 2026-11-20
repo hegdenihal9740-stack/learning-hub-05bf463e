@@ -1,4 +1,4 @@
-// Realistic glowing AI pictures (chip, brain, robot, chart, code, AI core) floating behind the course road.
+// Realistic AI pictures (chip, brain, robot, chart, code, AI core) resting still behind the course road.
 import { assetUrl } from '@/lib/asset-url'
 import chip from '@/assets/roadmap-ai/ai-chip.webp.asset.json'
 import brain from '@/assets/roadmap-ai/ai-brain.webp.asset.json'
@@ -34,7 +34,7 @@ export default function RoadmapAiIcons() {
         <span
           key={`${icon}-${i}`}
           className={`roadmap-ai-icon is-${side} is-${icon}`}
-          style={{ '--ai-y': `${y}%`, '--ai-size': `${size}px`, '--ai-delay': `${(i % 5) * -1.1}s`, '--ai-tilt': `${i % 2 ? 5 : -5}deg` }}
+          style={{ '--ai-y': `${y}%`, '--ai-size': `${size}px` }}
         >
           <img src={assetUrl(ICONS[icon].url)} alt="" loading="lazy" decoding="async" draggable="false"/>
         </span>
