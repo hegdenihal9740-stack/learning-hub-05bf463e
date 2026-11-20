@@ -70,6 +70,7 @@ import { useCloudAuth } from '@/components/auth-provider'
 import { supabase } from '@/integrations/supabase/client'
 import { sendPasswordReset } from './cloudAuth'
 import { RUNNER_SCROLL_IDLE_MS, shouldRunnerMove, getScrollDirection, getTravelHeading } from './roadmapRunnerMotion.js'
+import { scrollToCurrentRoadmapModule } from './roadmapNavigation.js'
 
 const RoadmapStudent = lazy(() => import('./RoadmapStudent.jsx'))
 
@@ -818,19 +819,18 @@ function Courses({ data, setPage }) {
       window.scrollTo(0, 0)
       return
     }
-    // The course page opens on its cover at the bottom, where the road starts (Module 01),
-    // after the bottom bar's own jump to the top has run.
+    // Open the roadmap at the student's current module, after navigation has settled.
     let inner = 0
     const outer = window.requestAnimationFrame(() => {
       inner = window.requestAnimationFrame(() => {
-        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })
+        scrollToCurrentRoadmapModule({ root: roadmapMapRef.current, behavior: 'instant' })
       })
     })
     return () => {
       window.cancelAnimationFrame(outer)
       window.cancelAnimationFrame(inner)
     }
-  }, [openModule])
+  }, [openModule, currentCourse?.id])
 
   useEffect(() => {
     const map = roadmapMapRef.current

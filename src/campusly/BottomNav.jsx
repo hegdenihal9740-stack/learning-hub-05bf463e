@@ -1,5 +1,6 @@
 import { LayoutDashboard, BookOpen, BookMarked, CalendarDays, LayoutGrid } from "lucide-react";
 import "./bottom-nav.css";
+import { scrollToCurrentRoadmapModule } from "./roadmapNavigation.js";
 
 const TABS = [
   { id: "dashboard", label: "Home", icon: LayoutDashboard },
@@ -11,9 +12,9 @@ const TABS = [
 export default function BottomNav({ page, setPage, onMore }) {
   const go = (id) => {
     if (id !== page) setPage(id);
-    // The course page places itself on its cover (bottom) when it opens; tapping it again returns there.
+    // Course opens at the current module; tapping it again returns to that checkpoint.
     if (id === "courses") {
-      if (id === page) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
+      if (id === page) scrollToCurrentRoadmapModule();
       return;
     }
     requestAnimationFrame(() => window.scrollTo(0, 0));

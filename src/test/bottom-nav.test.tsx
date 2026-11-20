@@ -28,3 +28,15 @@ it("does not jump the Course page back to the top when it opens", () => {
   expect(setPage).toHaveBeenCalledWith("courses");
   expect(raf).not.toHaveBeenCalled();
 });
+
+it("returns to the current module when Course is tapped again", () => {
+  document.body.innerHTML = '<div class="roadmap-module-item journey-current"></div>';
+  const currentModule = document.querySelector(".journey-current") as HTMLElement;
+  const scrollIntoView = vi.fn();
+  currentModule.scrollIntoView = scrollIntoView;
+
+  render(<BottomNav page="courses" setPage={vi.fn()} onMore={vi.fn()} />);
+  fireEvent.click(screen.getByRole("button", { name: /Course/ }));
+
+  expect(scrollIntoView).toHaveBeenCalledWith({ behavior: "smooth", block: "center" });
+});
