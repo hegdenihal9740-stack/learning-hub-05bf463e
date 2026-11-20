@@ -414,18 +414,12 @@ body:has(.roadmap-page:not(.module-session-page)){
 .roadmap-module-ai-icon::before{
   content:"";position:absolute;inset:-3px;z-index:-1;border-radius:14px;
   background:conic-gradient(from 0deg,transparent 0 60%,var(--module-accent) 80%,transparent 100%);
-  animation:rm-icon-spin 3.2s linear infinite;
 }
-.roadmap-module-ai-icon svg{animation:rm-icon-bob 2.4s ease-in-out infinite}
 .roadmap-page .journey-current .roadmap-module-ai-icon{background:var(--rm-gradient-cta)}
-.roadmap-page .roadmap-module-item:hover .roadmap-module-ai-icon svg{animation:rm-icon-pop .5s ease}
 
 @keyframes rm-card-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 @keyframes rm-card-shine{0%,70%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
 @keyframes rm-icon-glow{0%,100%{box-shadow:0 6px 14px -6px color-mix(in srgb,var(--module-accent) 80%,transparent)}50%{box-shadow:0 0 0 5px color-mix(in srgb,var(--module-accent) 22%,transparent),0 8px 18px -6px var(--module-accent)}}
-@keyframes rm-icon-spin{to{transform:rotate(360deg)}}
-@keyframes rm-icon-bob{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-1.5px) scale(1.08)}}
-@keyframes rm-icon-pop{0%{transform:scale(1) rotate(0)}50%{transform:scale(1.3) rotate(-12deg)}100%{transform:scale(1) rotate(0)}}
 
 @media(max-width:640px){
   .roadmap-page .roadmap-module-card-compact{max-width:none;gap:8px;padding:7px 10px 7px 7px;border-radius:13px}

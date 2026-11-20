@@ -19,4 +19,4 @@
 - [x] Compact course roadmap cards: module name only, AI icon per module, floating/shine/glow animations
 - [x] Realistic, high-quality AI pictures (chip, brain, robot, chart, code, AI core) floating in the course roadmap background, keeping its colours
 - [x] Course tab opens at the bottom cover ("Your learning roadmap"), where the road starts, instead of the top
-- [x] AI pictures on the course map stay still and fit inside the map (no floating or tilting)
+- [x] AI pictures on the course map and the module-card AI icons stay still (no floating, tilting or spinning)

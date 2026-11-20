@@ -11,6 +11,11 @@ const TABS = [
 export default function BottomNav({ page, setPage, onMore }) {
   const go = (id) => {
     if (id !== page) setPage(id);
+    // The course page places itself on its cover (bottom) when it opens; tapping it again returns there.
+    if (id === "courses") {
+      if (id === page) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
+      return;
+    }
     requestAnimationFrame(() => window.scrollTo(0, 0));
   };
   const pastelTheme = page !== "dashboard" && page !== "courses";
